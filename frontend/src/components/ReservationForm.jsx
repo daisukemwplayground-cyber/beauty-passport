@@ -133,7 +133,6 @@ export default function ReservationForm({ store, initialDate, initialTime }) {
         <div className="field field--slot" key={idx}>
           <span className="field__label">
             {t("store.requestSlot", { n: idx + 1 })}
-            {idx > 0 && ` ${t("store.requestSlotOptional")}`}
           </span>
           <DateTimeSlotInput
             date={slot.date}

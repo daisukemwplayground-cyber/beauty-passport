@@ -20,7 +20,7 @@ export default function App() {
         </Routes>
       </main>
       <footer className="app-footer">
-        <p>BeautyLink Saigon (MVP / Mock Data) — 日本人旅行者向け美容・マッサージ予約プラットフォーム試作</p>
+        <p>Beauty Passport (MVP / Mock Data) — 日本人旅行者向け美容・マッサージ予約プラットフォーム試作</p>
       </footer>
       <BottomTabBar />
     </div>

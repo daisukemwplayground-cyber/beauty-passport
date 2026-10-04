@@ -51,7 +51,7 @@ export default function SearchFilters({ filters, onChange, onSubmit }) {
 
         <label className="field">
           <span className="field__label">
-            {t("store.requestSlot", { n: 1 })} {t("store.requestSlotOptional")}
+            {t("store.requestSlot", { n: 1 })}
           </span>
           <DateTimeSlotInput
             date={filters.date}

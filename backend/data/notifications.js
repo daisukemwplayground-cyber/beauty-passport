@@ -18,7 +18,7 @@ function nextNotificationId() {
   return `ntf-${String(notificationCounter).padStart(4, "0")}`;
 }
 
-const SERVICE_NAME = "BeautyLink Saigon";
+const SERVICE_NAME = "Beauty Passport";
 
 function formatSlot(slot) {
   if (!slot) return "(未定)";

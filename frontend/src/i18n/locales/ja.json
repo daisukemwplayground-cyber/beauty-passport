@@ -8,7 +8,7 @@
   "search.title": "エリア・ジャンルで探す",
   "search.resultsBannerLabel": "マッサージ・エステサロンの検索結果",
   "search.keyword": "キーワード",
-  "search.keywordPlaceholder": "店名・こだわり条件など",
+  "search.keywordPlaceholder": "店名・メニュー(足つぼ、サウナ等)・こだわり条件など",
   "search.area": "エリア",
   "search.areaAll": "すべてのエリア",
   "search.category": "ジャンル",
@@ -144,5 +144,6 @@
   "store.unconfirmed": "要確認",
   "payment.cash": "現金",
   "payment.card": "クレジットカード",
-  "payment.qr": "QR決済"
+  "payment.qr": "QR決済",
+  "store.infoDisclaimer": "掲載情報は公開情報をもとにしています。料金・営業時間は変わることがあるため、最新の内容は予約時に店舗へご確認ください。"
 }

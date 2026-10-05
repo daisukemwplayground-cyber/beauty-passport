@@ -3,6 +3,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
+import { matchesKeyword } from "../services/storeSearch.js";
 import { stores, findStoreById, CATEGORIES, PAYMENT_METHODS, nextStoreId, defaultFeeModel } from "../data/stores.js";
 
 const router = Router();
@@ -57,15 +58,7 @@ router.get("/", (req, res) => {
     );
   }
   if (keyword) {
-    const kw = keyword.toLowerCase();
-    results = results.filter(
-      (s) =>
-        s.name.toLowerCase().includes(kw) ||
-        s.nameVi.toLowerCase().includes(kw) ||
-        s.description.toLowerCase().includes(kw) ||
-        s.descriptionEn.toLowerCase().includes(kw) ||
-        s.tags.some((t) => t.toLowerCase().includes(kw))
-    );
+    results = results.filter((s) => matchesKeyword(s, keyword));
   }
   if (minPrice) {
     results = results.filter((s) => s.priceRangeMax >= Number(minPrice));

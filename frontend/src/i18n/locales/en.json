@@ -133,5 +133,16 @@
   "lookup.submit": "Check status",
   "lookup.notFound": "No reservation found matching that reservation number and email address. Please check your input.",
 
-  "lang.switch": "日本語"
+  "lang.switch": "日本語",
+
+  "price.jpyApprox": "(approx. ¥{yen})",
+  "price.jpyNote": "Yen amounts are estimates at today's exchange rate. Payment is in VND.",
+  "store.tip": "Tip",
+  "store.tipIncluded": "Included",
+  "store.tipNotIncluded": "Not included",
+  "store.payment": "Payment",
+  "store.unconfirmed": "To be confirmed",
+  "payment.cash": "Cash",
+  "payment.card": "Credit card",
+  "payment.qr": "QR payment"
 }

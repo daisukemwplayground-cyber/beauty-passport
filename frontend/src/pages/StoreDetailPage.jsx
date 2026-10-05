@@ -3,7 +3,9 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useI18n } from "../i18n/index.jsx";
 import { api } from "../api/client.js";
 import ReservationForm from "../components/ReservationForm.jsx";
-import { formatNumber } from "../utils/format.js";
+import { formatVndK, formatVndRangeK, formatJpyFromVnd, formatJpyRangeFromVnd } from "../utils/format.js";
+import { useVndJpyRate } from "../hooks/useVndJpyRate.js";
+import StoreTipPayment from "../components/StoreTipPayment.jsx";
 
 export default function StoreDetailPage() {
   const { id } = useParams();
@@ -12,6 +14,7 @@ export default function StoreDetailPage() {
   const [store, setStore] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const jpyPerVnd = useVndJpyRate();
 
   useEffect(() => {
     let cancelled = false;
@@ -70,7 +73,9 @@ export default function StoreDetailPage() {
         <p className="store-detail__area">{store.area}</p>
         <div className="store-detail__meta">
           <span>
-            {t("store.priceRange")}: {formatNumber(store.priceRangeMin)} - {formatNumber(store.priceRangeMax)} VND
+            {t("store.priceRange")}: {formatVndRangeK(store.priceRangeMin, store.priceRangeMax)} VND
+            {jpyPerVnd &&
+              ` ${t("price.jpyApprox", { yen: formatJpyRangeFromVnd(store.priceRangeMin, store.priceRangeMax, jpyPerVnd) })}`}
           </span>
         </div>
         <div className="store-card__tags">
@@ -92,11 +97,18 @@ export default function StoreDetailPage() {
               <tr key={m.id}>
                 <td>{lang === "en" ? m.nameEn : m.name}</td>
                 <td>{m.durationMin} min</td>
-                <td>{formatNumber(m.price)} VND</td>
+                <td>
+                  {formatVndK(m.price)} VND
+                  {jpyPerVnd && (
+                    <span className="menu-table__jpy">{t("price.jpyApprox", { yen: formatJpyFromVnd(m.price, jpyPerVnd) })}</span>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {jpyPerVnd && <p className="hint">{t("price.jpyNote")}</p>}
+        <StoreTipPayment store={store} />
       </section>
 
       <section className="store-detail__section">

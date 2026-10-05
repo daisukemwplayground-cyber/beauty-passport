@@ -3,7 +3,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { stores, findStoreById, CATEGORIES, nextStoreId, defaultFeeModel } from "../data/stores.js";
+import { stores, findStoreById, CATEGORIES, PAYMENT_METHODS, nextStoreId, defaultFeeModel } from "../data/stores.js";
 
 const router = Router();
 
@@ -91,6 +91,8 @@ router.get("/", (req, res) => {
     catchcopyEn: s.catchcopyEn,
     responseTimeHint: s.responseTimeHint,
     responseTimeHintEn: s.responseTimeHintEn,
+    tipIncluded: s.tipIncluded,
+    paymentMethods: s.paymentMethods,
   }));
 
   res.json({ count: summarized.length, results: summarized });
@@ -135,6 +137,8 @@ router.post("/", (req, res) => {
     responseTimeHintEn: "",
     menu: [],
     reviews: [],
+    tipIncluded: null,
+    paymentMethods: [],
     feeModel: defaultFeeModel(),
   };
 
@@ -173,6 +177,15 @@ router.put("/:id", (req, res) => {
   if (req.body.category !== undefined && !CATEGORIES.includes(req.body.category)) {
     return res.status(400).json({ error: `category は次のいずれかである必要があります: ${CATEGORIES.join(", ")}` });
   }
+  if (req.body.tipIncluded !== undefined && ![true, false, null].includes(req.body.tipIncluded)) {
+    return res.status(400).json({ error: "tipIncluded は true / false / null のいずれかである必要があります" });
+  }
+  if (
+    req.body.paymentMethods !== undefined &&
+    (!Array.isArray(req.body.paymentMethods) || req.body.paymentMethods.some((m) => !PAYMENT_METHODS.includes(m)))
+  ) {
+    return res.status(400).json({ error: `paymentMethods は次の値の配列である必要があります: ${PAYMENT_METHODS.join(", ")}` });
+  }
   const editableFields = [
     "name",
     "category",
@@ -190,6 +203,8 @@ router.put("/:id", (req, res) => {
     "priceRangeMin",
     "priceRangeMax",
     "menu",
+    "tipIncluded",
+    "paymentMethods",
   ];
   for (const field of editableFields) {
     if (req.body[field] !== undefined) {

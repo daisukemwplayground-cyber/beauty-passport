@@ -569,6 +569,56 @@ textarea:focus {
   font-weight: 600;
 }
 
+.store-card__price-jpy {
+  margin-left: 6px;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* チップ・支払い方法(一覧カード / 詳細ページ共用) */
+.store-tip-payment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+}
+
+.store-tip-payment > div {
+  display: flex;
+  gap: 6px;
+}
+
+.store-tip-payment dt {
+  color: var(--color-text-muted);
+}
+
+.store-tip-payment dt::after {
+  content: ":";
+}
+
+.store-tip-payment dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.store-tip-payment--compact {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+}
+
+.checkbox-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.checkbox-row__item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .store-card__actions {
   display: flex;
   gap: 8px;
@@ -664,6 +714,13 @@ textarea:focus {
   text-align: right;
   font-weight: 600;
   white-space: nowrap;
+}
+
+.menu-table__jpy {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .review-list {

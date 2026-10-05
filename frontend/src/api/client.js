@@ -28,6 +28,7 @@ export const api = {
     return request(`/stores${qs ? `?${qs}` : ""}`);
   },
   getCategories: () => request("/stores/categories"),
+  getRates: () => request("/rates"),
   getStore: (id) => request(`/stores/${id}`),
   createStore: (data) => request("/stores", { method: "POST", body: JSON.stringify(data) }),
   updateStore: (id, data) => request(`/stores/${id}`, { method: "PUT", body: JSON.stringify(data) }),

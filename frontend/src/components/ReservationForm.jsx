@@ -117,6 +117,7 @@ export default function ReservationForm({ store, initialDate, initialTime }) {
         <input type="number" min={1} max={10} value={partySize} onChange={(e) => setPartySize(e.target.value)} />
       </label>
 
+      {store.menu.length > 0 && (
       <fieldset className="field">
         <legend className="field__label">{t("store.requestMenu")}</legend>
         <div className="menu-checkbox-list">
@@ -128,6 +129,7 @@ export default function ReservationForm({ store, initialDate, initialTime }) {
           ))}
         </div>
       </fieldset>
+      )}
 
       {slots.map((slot, idx) => (
         <div className="field field--slot" key={idx}>

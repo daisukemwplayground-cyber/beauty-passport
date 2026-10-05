@@ -22,6 +22,10 @@ const SYNONYM_GROUPS = [
   ["パッケージ", "package", "セット"],
   ["スパ", "spa", "エステ"],
   ["カップル", "couple", "ペア", "2人"],
+  ["床屋", "理髪店", "理容", "barber", "バーバー"],
+  ["耳かき", "耳掃除", "ear cleaning"],
+  ["顔剃り", "シェービング", "shave", "shaving"],
+  ["洗髪", "シャンプー", "ヘッドスパ", "hair wash", "head spa"],
   ["日本人街", "japanese street", "レタントン", "le thanh ton"],
   ["深夜", "夜遅く", "late", "夜"],
   ["チップ込み", "tip included", "チップ不要"],
@@ -35,6 +39,9 @@ const AREA_LABELS = {
   Pasteur: ["パスター通り", "パスター"],
   "Hai Ba Trung": ["ハイバーチュン通り", "ハイバーチュン"],
   "Thi Sach": ["ティサック通り", "ティサック"],
+  "Ben Thanh": ["ベンタイン市場", "ベンタイン"],
+  "Pham Ngu Lao": ["ブイビエン", "bui vien", "ファングーラオ", "デタム", "de tham"],
+  "Tan Dinh": ["タンディン", "ダカオ", "da kao"],
 };
 const CATEGORY_LABELS = {
   massage: ["マッサージ"],

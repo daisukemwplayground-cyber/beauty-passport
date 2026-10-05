@@ -6,6 +6,8 @@
 // 将来組み込むための拡張フィールド。MVPでは値を null のまま保持し、計算・請求ロジックは実装しない。
 // (type: "fixed" | "percentage" | null, amount: 数値 | null)
 
+import { batch2Stores } from "./sampleStoresBatch2.js";
+
 export const CATEGORIES = ["massage", "spa", "barber"];
 
 // 支払い方法の選択肢(表示ラベルは frontend の i18n payment.* キー)
@@ -225,6 +227,8 @@ export const stores = [
       "https://www.tripadvisor.com/Attraction_Review-g293925-d7339849-Reviews-Temple_Leaf_Spa_Sauna-Ho_Chi_Minh_City.html",
     ],
   }),
+  // 第2弾: ベトナム式理髪店5件・マッサージ店25件(sampleStoresBatch2.js)
+  ...batch2Stores.map(sampleStore),
 ];
 
 export function findStoreById(id) {

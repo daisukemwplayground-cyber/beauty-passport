@@ -30,6 +30,9 @@
   "area.pasteur": "Pasteur",
   "area.haiBaTrung": "Hai Ba Trung",
   "area.thiSach": "Thi Sach",
+  "area.benThanh": "Ben Thanh Market",
+  "area.phamNguLao": "Bui Vien / Pham Ngu Lao",
+  "area.tanDinh": "Tan Dinh / Da Kao",
 
   "store.reviews": "reviews",
   "store.viewDetail": "View details",
@@ -145,5 +148,6 @@
   "payment.cash": "Cash",
   "payment.card": "Credit card",
   "payment.qr": "QR payment",
-  "store.infoDisclaimer": "Listing details are based on publicly available information. Prices and hours may change, so please confirm with the shop when booking."
+  "store.infoDisclaimer": "Listing details are based on publicly available information. Prices and hours may change, so please confirm with the shop when booking.",
+  "store.menuUnconfirmed": "The menu and prices are being confirmed. Please describe the treatment you want in the request notes."
 }

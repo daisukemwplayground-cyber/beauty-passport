@@ -77,8 +77,9 @@ export default function StoreDetailPage() {
         <p className="store-detail__area">{areaKey ? t(areaKey) : store.area}</p>
         <div className="store-detail__meta">
           <span>
-            {t("store.priceRange")}: {formatVndRangeK(store.priceRangeMin, store.priceRangeMax)} VND
-            {jpyPerVnd &&
+            {t("store.priceRange")}:{" "}
+            {store.priceRangeMax > 0 ? `${formatVndRangeK(store.priceRangeMin, store.priceRangeMax)} VND` : t("store.unconfirmed")}
+            {jpyPerVnd && store.priceRangeMax > 0 &&
               ` ${t("price.jpyApprox", { yen: formatJpyRangeFromVnd(store.priceRangeMin, store.priceRangeMax, jpyPerVnd) })}`}
           </span>
         </div>
@@ -95,6 +96,7 @@ export default function StoreDetailPage() {
 
       <section className="store-detail__section">
         <h2>{t("store.menu")}</h2>
+        {store.menu.length === 0 && <p className="hint">{t("store.menuUnconfirmed")}</p>}
         <table className="menu-table">
           <tbody>
             {store.menu.map((m) => (
@@ -113,7 +115,7 @@ export default function StoreDetailPage() {
         </table>
         {priceNote && <p className="store-detail__price-note">{priceNote}</p>}
         <StoreTipPayment store={store} />
-        {jpyPerVnd && <p className="hint">{t("price.jpyNote")}</p>}
+        {jpyPerVnd && store.menu.length > 0 && <p className="hint">{t("price.jpyNote")}</p>}
         <p className="hint">{t("store.infoDisclaimer")}</p>
       </section>
 

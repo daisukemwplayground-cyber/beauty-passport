@@ -51,6 +51,7 @@ export default function StoreCard({ store }) {
       <div className="store-card__body">
         {catchcopy && <p className="store-card__catchcopy">{catchcopy}</p>}
         <div className="store-card__meta">
+          {store.priceRangeMax > 0 ? (
           <span className="store-card__price">
             {formatVndRangeK(store.priceRangeMin, store.priceRangeMax)} VND
             {jpyPerVnd && (
@@ -59,6 +60,11 @@ export default function StoreCard({ store }) {
               </span>
             )}
           </span>
+          ) : (
+            <span className="store-card__price">
+              {t("store.priceRange")}: {t("store.unconfirmed")}
+            </span>
+          )}
         </div>
         <StoreTipPayment store={store} className="store-tip-payment--compact" />
         <div className="store-card__actions">

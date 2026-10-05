@@ -30,6 +30,9 @@
   "area.pasteur": "パスター通り",
   "area.haiBaTrung": "ハイバーチュン通り",
   "area.thiSach": "ティサック通り",
+  "area.benThanh": "ベンタイン市場周辺",
+  "area.phamNguLao": "ブイビエン・ファングーラオ",
+  "area.tanDinh": "タンディン・ダカオ",
 
   "store.reviews": "件の口コミ",
   "store.viewDetail": "詳細を見る",
@@ -145,5 +148,6 @@
   "payment.cash": "現金",
   "payment.card": "クレジットカード",
   "payment.qr": "QR決済",
-  "store.infoDisclaimer": "掲載情報は公開情報をもとにしています。料金・営業時間は変わることがあるため、最新の内容は予約時に店舗へご確認ください。"
+  "store.infoDisclaimer": "掲載情報は公開情報をもとにしています。料金・営業時間は変わることがあるため、最新の内容は予約時に店舗へご確認ください。",
+  "store.menuUnconfirmed": "メニュー・料金は現在確認中です。予約リクエストの備考欄で希望の施術をお知らせください。"
 }

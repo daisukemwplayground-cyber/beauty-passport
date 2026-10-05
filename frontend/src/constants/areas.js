@@ -7,6 +7,9 @@ export const AREAS = [
   { value: "Pasteur", key: "pasteur" },
   { value: "Hai Ba Trung", key: "haiBaTrung" },
   { value: "Thi Sach", key: "thiSach" },
+  { value: "Ben Thanh", key: "benThanh" },
+  { value: "Pham Ngu Lao", key: "phamNguLao" },
+  { value: "Tan Dinh", key: "tanDinh" },
 ];
 
 // 店舗の area(内部値)から表示ラベルの i18n キーを返す。未知のエリアは null(内部値をそのまま表示する)。

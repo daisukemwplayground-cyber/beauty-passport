@@ -16,6 +16,9 @@ const AREA_CENTERS = {
   Pasteur: { lat: 10.7802, lng: 106.6998 },
   "Hai Ba Trung": { lat: 10.7811, lng: 106.7008 },
   "Thi Sach": { lat: 10.7798, lng: 106.7042 },
+  "Ben Thanh": { lat: 10.772, lng: 106.6985 },
+  "Pham Ngu Lao": { lat: 10.7672, lng: 106.6925 },
+  "Tan Dinh": { lat: 10.79, lng: 106.6945 },
 };
 
 // 店舗写真のアップロード先(バックエンド配下、server.jsで /api/uploads として静的配信する)

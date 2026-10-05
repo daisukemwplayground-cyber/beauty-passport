@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/index.jsx";
-import { formatPriceRange } from "../utils/format.js";
+import { formatVndRangeK, formatJpyRangeFromVnd } from "../utils/format.js";
+import { useVndJpyRate } from "../hooks/useVndJpyRate.js";
+import StoreTipPayment from "./StoreTipPayment.jsx";
 
 // デザイン方針: ①-3(ホットペッパー型・写真/キャッチコピー訴求版、事業計画書.md セクション15で仮決定)を
 // 実際のホットペッパービューティーの画面(ユーザー提供のスクリーンショット、2026-09-17)によりに寄せた改訂版。
@@ -15,6 +17,7 @@ const TAG_COLORS = ["a", "b", "c"];
 export default function StoreCard({ store }) {
   const { t, lang } = useI18n();
   const catchcopy = lang === "en" ? store.catchcopyEn : store.catchcopy;
+  const jpyPerVnd = useVndJpyRate();
 
   return (
     <div className="store-card">
@@ -47,9 +50,15 @@ export default function StoreCard({ store }) {
         {catchcopy && <p className="store-card__catchcopy">{catchcopy}</p>}
         <div className="store-card__meta">
           <span className="store-card__price">
-            {formatPriceRange(store.priceRangeMin, store.priceRangeMax)} VND {t("search.priceFrom")}
+            {formatVndRangeK(store.priceRangeMin, store.priceRangeMax)} VND
+            {jpyPerVnd && (
+              <span className="store-card__price-jpy">
+                {t("price.jpyApprox", { yen: formatJpyRangeFromVnd(store.priceRangeMin, store.priceRangeMax, jpyPerVnd) })}
+              </span>
+            )}
           </span>
         </div>
+        <StoreTipPayment store={store} className="store-tip-payment--compact" />
         <div className="store-card__actions">
           <Link to={`/stores/${store.id}`} className="btn btn--secondary btn--small">
             {t("store.viewDetail")}

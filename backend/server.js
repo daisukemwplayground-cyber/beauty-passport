@@ -7,6 +7,7 @@ import storesRouter from "./routes/stores.js";
 import reservationsRouter from "./routes/reservations.js";
 import adminRouter from "./routes/admin.js";
 import notificationsRouter from "./routes/notifications.js";
+import ratesRouter from "./routes/rates.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -25,6 +26,7 @@ app.use("/api/stores", storesRouter);
 app.use("/api/reservations", reservationsRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/notifications", notificationsRouter);
+app.use("/api/rates", ratesRouter);
 
 app.use("/api", (req, res) => {
   res.status(404).json({ error: `not found: ${req.method} ${req.originalUrl}` });

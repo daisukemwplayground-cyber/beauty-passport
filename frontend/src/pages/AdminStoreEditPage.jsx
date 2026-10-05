@@ -5,6 +5,11 @@ import { AREAS } from "../constants/areas.js";
 
 // ジャンルの選択肢はSearchFilters.jsxと同じ「マッサージ」「エステ」の2つ。
 const CATEGORIES = ["massage", "spa", "barber"];
+const PAYMENT_METHODS = ["cash", "card", "qr"];
+
+// tipIncluded(true/false/null) と <select> の値の対応
+const TIP_TO_SELECT = { true: "included", false: "notIncluded", null: "" };
+const SELECT_TO_TIP = { included: true, notIncluded: false, "": null };
 
 function emptyMenuRow() {
   return { id: `tmp-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, name: "", nameEn: "", price: 0, durationMin: 60 };
@@ -72,6 +77,14 @@ export default function AdminStoreEditPage() {
       menu: prev.menu.map((m, i) => (i === idx ? { ...m, [field]: value } : m)),
     }));
   };
+
+  const togglePaymentMethod = (method) => (e) =>
+    setForm((prev) => {
+      const current = prev.paymentMethods || [];
+      const next = e.target.checked ? [...current, method] : current.filter((m) => m !== method);
+      // 表示順を選択肢の順にそろえる
+      return { ...prev, paymentMethods: PAYMENT_METHODS.filter((m) => next.includes(m)) };
+    });
 
   const addMenuRow = () => setForm((prev) => ({ ...prev, menu: [...prev.menu, emptyMenuRow()] }));
   const removeMenuRow = (idx) => setForm((prev) => ({ ...prev, menu: prev.menu.filter((_, i) => i !== idx) }));
@@ -145,6 +158,8 @@ export default function AdminStoreEditPage() {
         priceRangeMin: Number(form.priceRangeMin),
         priceRangeMax: Number(form.priceRangeMax),
         menu: form.menu,
+        tipIncluded: form.tipIncluded ?? null,
+        paymentMethods: form.paymentMethods || [],
       });
       setForm({ ...updated, tagsText: updated.tags.join(", ") });
       setSavedMsg(true);
@@ -314,6 +329,34 @@ export default function AdminStoreEditPage() {
               <input type="number" value={form.priceRangeMax} onChange={updateField("priceRangeMax")} />
             </label>
           </div>
+
+          <label className="field">
+            <span className="field__label">{t("store.tip")}</span>
+            <select
+              value={TIP_TO_SELECT[form.tipIncluded ?? null]}
+              onChange={(e) => setForm((prev) => ({ ...prev, tipIncluded: SELECT_TO_TIP[e.target.value] }))}
+            >
+              <option value="">{t("store.unconfirmed")}</option>
+              <option value="included">{t("store.tipIncluded")}</option>
+              <option value="notIncluded">{t("store.tipNotIncluded")}</option>
+            </select>
+          </label>
+
+          <fieldset className="field">
+            <legend className="field__label">{t("store.payment")}</legend>
+            <div className="checkbox-row">
+              {PAYMENT_METHODS.map((m) => (
+                <label key={m} className="checkbox-row__item">
+                  <input
+                    type="checkbox"
+                    checked={(form.paymentMethods || []).includes(m)}
+                    onChange={togglePaymentMethod(m)}
+                  />
+                  {t(`payment.${m}`)}
+                </label>
+              ))}
+            </div>
+          </fieldset>
 
           <fieldset className="field">
             <legend className="field__label">{t("admin.editMenu")}</legend>

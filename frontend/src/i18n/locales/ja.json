@@ -133,5 +133,16 @@
   "lookup.submit": "確認する",
   "lookup.notFound": "予約番号とメールアドレスの組み合わせが一致する予約が見つかりませんでした。入力内容をご確認ください。",
 
-  "lang.switch": "English"
+  "lang.switch": "English",
+
+  "price.jpyApprox": "(約{yen}円)",
+  "price.jpyNote": "円は当日の為替レートによる目安です。お支払いは現地通貨(VND)になります。",
+  "store.tip": "チップ",
+  "store.tipIncluded": "料金に込み",
+  "store.tipNotIncluded": "別途",
+  "store.payment": "支払い方法",
+  "store.unconfirmed": "要確認",
+  "payment.cash": "現金",
+  "payment.card": "クレジットカード",
+  "payment.qr": "QR決済"
 }

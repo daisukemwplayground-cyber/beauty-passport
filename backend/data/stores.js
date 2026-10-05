@@ -8,6 +8,12 @@
 
 export const CATEGORIES = ["massage", "spa", "barber"];
 
+// 支払い方法の選択肢(表示ラベルは frontend の i18n payment.* キー)
+export const PAYMENT_METHODS = ["cash", "card", "qr"];
+
+// tipIncluded: true = 料金にチップ込み / false = チップ別途 / null = 未確認
+// paymentMethods: PAYMENT_METHODS の部分集合。空配列 = 未確認
+
 export const defaultFeeModel = () => ({
   type: null, // 将来 "fixed"(定額) を設定する想定。パイロット設計上は定率(percentage)は非推奨。
   amount: null,
@@ -23,6 +29,7 @@ export const defaultFeeModel = () => ({
 // - メニューは公開されている「〜から」価格などをもとにした目安で、正式な料金表ではない。
 // - 緯度経度は住所からのおおよその値。写真は未登録(no-photo表示)。
 // - 評価・口コミは捏造しないため 0件 のまま。
+// - チップ込みかどうか・支払い方法は未確認のため null / 空配列(画面上は「要確認」と表示)。
 // 本番公開前に、各店舗の確認を取るか、このデータを削除すること。
 const sampleStore = (fields) => ({
   nameVi: "",
@@ -30,6 +37,8 @@ const sampleStore = (fields) => ({
   reviewCount: 0,
   photos: [],
   reviews: [],
+  tipIncluded: null,
+  paymentMethods: [],
   feeModel: defaultFeeModel(),
   ...fields,
 });

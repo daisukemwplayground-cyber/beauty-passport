@@ -6,6 +6,7 @@ import ReservationForm from "../components/ReservationForm.jsx";
 import { formatVndK, formatVndRangeK, formatJpyFromVnd, formatJpyRangeFromVnd } from "../utils/format.js";
 import { useVndJpyRate } from "../hooks/useVndJpyRate.js";
 import StoreTipPayment from "../components/StoreTipPayment.jsx";
+import { areaLabelKey } from "../constants/areas.js";
 
 export default function StoreDetailPage() {
   const { id } = useParams();
@@ -48,7 +49,10 @@ export default function StoreDetailPage() {
   const desc = lang === "en" && store.descriptionEn ? store.descriptionEn : store.description;
   const address = lang === "en" && store.addressEn ? store.addressEn : store.address;
   const responseHint = lang === "en" && store.responseTimeHintEn ? store.responseTimeHintEn : store.responseTimeHint;
-  const mapQuery = encodeURIComponent(store.addressEn || store.address);
+  const priceNote = lang === "en" && store.priceNoteEn ? store.priceNoteEn : store.priceNote;
+  const areaKey = areaLabelKey(store.area);
+  // 「(former District 1)」のような括弧書きはGoogleマップの検索精度を下げるので除き、店名を付けて検索する
+  const mapQuery = encodeURIComponent(`${store.name}, ${(store.addressEn || store.address).replace(/\s*\([^)]*\)/g, "")}`);
 
   return (
     <div className="page store-detail">
@@ -70,7 +74,7 @@ export default function StoreDetailPage() {
           {t(`category.${store.category}`)}
         </span>
         <h1>{store.name}</h1>
-        <p className="store-detail__area">{store.area}</p>
+        <p className="store-detail__area">{areaKey ? t(areaKey) : store.area}</p>
         <div className="store-detail__meta">
           <span>
             {t("store.priceRange")}: {formatVndRangeK(store.priceRangeMin, store.priceRangeMax)} VND
@@ -96,7 +100,7 @@ export default function StoreDetailPage() {
             {store.menu.map((m) => (
               <tr key={m.id}>
                 <td>{lang === "en" ? m.nameEn : m.name}</td>
-                <td>{m.durationMin} min</td>
+                <td>{m.durationMin ? `${m.durationMin} min` : "-"}</td>
                 <td>
                   {formatVndK(m.price)} VND
                   {jpyPerVnd && (
@@ -107,8 +111,10 @@ export default function StoreDetailPage() {
             ))}
           </tbody>
         </table>
-        {jpyPerVnd && <p className="hint">{t("price.jpyNote")}</p>}
+        {priceNote && <p className="store-detail__price-note">{priceNote}</p>}
         <StoreTipPayment store={store} />
+        {jpyPerVnd && <p className="hint">{t("price.jpyNote")}</p>}
+        <p className="hint">{t("store.infoDisclaimer")}</p>
       </section>
 
       <section className="store-detail__section">
@@ -117,11 +123,13 @@ export default function StoreDetailPage() {
           {t("store.address")}: {address}
         </p>
         <p>
-          {t("store.businessHours")}: {store.businessHours}
+          {t("store.businessHours")}: {store.businessHours || t("store.unconfirmed")}
         </p>
-        <p>
-          {t("store.responseTime")}: {responseHint}
-        </p>
+        {responseHint && (
+          <p>
+            {t("store.responseTime")}: {responseHint}
+          </p>
+        )}
         <a
           className="map-link"
           href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}

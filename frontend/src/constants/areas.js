@@ -8,3 +8,9 @@ export const AREAS = [
   { value: "Hai Ba Trung", key: "haiBaTrung" },
   { value: "Thi Sach", key: "thiSach" },
 ];
+
+// 店舗の area(内部値)から表示ラベルの i18n キーを返す。未知のエリアは null(内部値をそのまま表示する)。
+export function areaLabelKey(value) {
+  const area = AREAS.find((a) => a.value === value);
+  return area ? `area.${area.key}` : null;
+}

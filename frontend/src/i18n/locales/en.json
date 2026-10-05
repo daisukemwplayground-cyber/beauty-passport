@@ -8,7 +8,7 @@
   "search.title": "Search by area & category",
   "search.resultsBannerLabel": "Massage & Esthetic Salon Search Results",
   "search.keyword": "Keyword",
-  "search.keywordPlaceholder": "Salon name, features, etc.",
+  "search.keywordPlaceholder": "Salon name, menu (foot, sauna...), features",
   "search.area": "Area",
   "search.areaAll": "All areas",
   "search.category": "Category",
@@ -144,5 +144,6 @@
   "store.unconfirmed": "To be confirmed",
   "payment.cash": "Cash",
   "payment.card": "Credit card",
-  "payment.qr": "QR payment"
+  "payment.qr": "QR payment",
+  "store.infoDisclaimer": "Listing details are based on publicly available information. Prices and hours may change, so please confirm with the shop when booking."
 }

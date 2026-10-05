@@ -4,6 +4,7 @@ import { useI18n } from "../i18n/index.jsx";
 import { formatVndRangeK, formatJpyRangeFromVnd } from "../utils/format.js";
 import { useVndJpyRate } from "../hooks/useVndJpyRate.js";
 import StoreTipPayment from "./StoreTipPayment.jsx";
+import { areaLabelKey } from "../constants/areas.js";
 
 // デザイン方針: ①-3(ホットペッパー型・写真/キャッチコピー訴求版、事業計画書.md セクション15で仮決定)を
 // 実際のホットペッパービューティーの画面(ユーザー提供のスクリーンショット、2026-09-17)によりに寄せた改訂版。
@@ -18,12 +19,13 @@ export default function StoreCard({ store }) {
   const { t, lang } = useI18n();
   const catchcopy = lang === "en" ? store.catchcopyEn : store.catchcopy;
   const jpyPerVnd = useVndJpyRate();
+  const areaKey = areaLabelKey(store.area);
 
   return (
     <div className="store-card">
       <div className="store-card__body store-card__body--top">
         <h3 className="store-card__name">{store.name}</h3>
-        <p className="store-card__area">{store.area}</p>
+        <p className="store-card__area">{areaKey ? t(areaKey) : store.area}</p>
         {store.tags.length > 0 && (
           <div className="store-card__tags">
             {store.tags.slice(0, 3).map((tag, i) => (
